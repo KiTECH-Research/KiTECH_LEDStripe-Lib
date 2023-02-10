@@ -12,7 +12,7 @@ KiTECH_LEDStripe::KiTECH_LEDStripe(int r, int g, int b) {
 #define STRIPEPIN 15
 #define NUMPIXELS 18
 
-Adafruit_NeoPixel pixels(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel pixels(NUMPIXELS, STRIPEPIN, NEO_GRB + NEO_KHZ800);
 
 bool KiTECH_LEDStripe::setup() {
     pinMode(_pinR, INPUT);
@@ -43,7 +43,10 @@ int KiTECH_LEDStripe::get_color_value(Pin pin) {
 }
 
 void KiTECH_LEDStripe::show_color(int r, int g, int b) {
-
+    for (int i = 0; i < NUMPIXELS; i++) {
+        pixels.setPixelColor(i, pixels.Color(r, g, b));
+    }
+    pixels.show();
 }
 
 void KiTECH_LEDStripe::clear() {

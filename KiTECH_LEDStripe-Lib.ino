@@ -21,4 +21,5 @@ void loop() {
     int g = stripe.get_color_value(stripe.Green);
     int b = stripe.get_color_value(stripe.Blue);
     oled.print_rgb_values(r, g, b);
+    stripe.show_color(r, g, b);
 }
