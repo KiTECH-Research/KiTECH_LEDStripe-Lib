@@ -13,7 +13,7 @@ void setup() {
     } else {
         oled.print("setup FAIL");
     }
-    oled.clear();
+    oled.clear();    
 }
 
 void loop() {
@@ -22,4 +22,9 @@ void loop() {
     int b = stripe.get_color_value(stripe.Blue);
     oled.print_rgb_values(r, g, b);
     stripe.show_color(r, g, b);
+    Serial.print(r);
+    Serial.print(" ");
+    Serial.print(g);
+    Serial.print(" ");
+    Serial.println(b);
 }

@@ -28,18 +28,22 @@ bool KiTECH_LEDStripe::nastav() {
     return setup();
 }
 
+void KiTECH_LEDStripe::clear() {
+    pixels.clear();
+}
+
+void KiTECH_LEDStripe::vycisti() {
+    clear();
+}
+
 int KiTECH_LEDStripe::get_color_value(Pin pin) {
-    switch (pin)
-    {
-        case Red:
-            return map(analogRead(_pinR), 0, 4095, 0, 255);
-        case Green:
-            return map(analogRead(_pinG), 0, 4095, 0, 255);
-        case Blue:
-            return map(analogRead(_pinB), 0, 4095, 0, 255);
-        default:
-            return 0;
-    }
+    int pinNumber = get_pin_number(pin);
+    int maxValue = get_max_potentiometer_value(pin);
+
+    if (pinNumber == 0 || maxValue == 0)
+        return 0;
+
+    return map(analogRead(pinNumber), 0, maxValue, 0, 255);
 }
 
 void KiTECH_LEDStripe::show_color(int r, int g, int b) {
@@ -49,10 +53,30 @@ void KiTECH_LEDStripe::show_color(int r, int g, int b) {
     pixels.show();
 }
 
-void KiTECH_LEDStripe::clear() {
-    pixels.clear();
+int KiTECH_LEDStripe::get_pin_number(Pin pin) {
+    switch (pin)
+    {
+        case Red:
+            return _pinR;
+        case Green:
+            return _pinG;
+        case Blue:
+            return _pinB;
+        default:
+            return 0;
+    }
 }
 
-void KiTECH_LEDStripe::vycisti() {
-    clear();
+int KiTECH_LEDStripe::get_max_potentiometer_value(Pin pin) {
+    switch (pin)
+    {
+        case Red:
+            return _maxPotentiometerR;
+        case Green:
+            return _maxPotentiometerG;
+        case Blue:
+            return _maxPotentiometerB;
+        default:
+            return 0;
+    }
 }
