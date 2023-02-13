@@ -32,6 +32,7 @@ public:
     void show_color(int r, int g, int b);
     int get_pin_number(Pin pin);
     int get_max_potentiometer_value(Pin pin);
+    void night_lamp();
 };
 
 #endif

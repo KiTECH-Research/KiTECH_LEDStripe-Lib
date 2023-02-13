@@ -24,7 +24,7 @@ void loop() {
         Serial.print(" ");
         Serial.println(b);
     } else {
-        stripe.show_color(0, 0, 0);
+        stripe.night_lamp();
     }
 
     if (digitalRead(4) == HIGH && (millis() - prev_millis > 250)) {

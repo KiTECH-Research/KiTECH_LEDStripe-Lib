@@ -80,3 +80,7 @@ int KiTECH_LEDStripe::get_max_potentiometer_value(Pin pin) {
             return 0;
     }
 }
+
+void KiTECH_LEDStripe::night_lamp() {
+    show_color(255, 105, 25);
+}
